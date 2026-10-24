@@ -6,7 +6,7 @@
   <a href="https://mjh.im"><img src="https://img.shields.io/badge/主页-mjh.im-58a6ff?style=flat-square&logo=safari&logoColor=white" alt="主页" /></a>
   <a href="https://apt.mjh.im"><img src="https://img.shields.io/badge/插件源-apt.mjh.im-34d399?style=flat-square&logo=apple&logoColor=white" alt="插件源" /></a>
   <a href="https://pingme.pm"><img src="https://img.shields.io/badge/反馈-pingme.pm-f78166?style=flat-square&logo=maildotru&logoColor=white" alt="反馈" /></a>
-  <img src="https://komarev.com/ghpvc/?username=5hux1n&style=flat-square&color=8b949e&label=访问" alt="访问量" />
+  <img src="https://komarev.com/ghpvc/?username=5hux1n&style=flat-square&color=8b949e&label=views" alt="主页访问量" />
 </p>
 
 <br/>
