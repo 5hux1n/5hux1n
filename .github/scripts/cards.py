@@ -135,8 +135,8 @@ def stats_card(u):
     stars = sum(n["stargazerCount"] for n in u["repositories"]["nodes"])
     rows = [
         ("star", "Stars", stars),
-        ("commit", "今年提交", c["totalCommitContributions"] + c["restrictedContributionsCount"]),
-        ("fire", "今年贡献", c["contributionCalendar"]["totalContributions"]),
+        ("commit", "近一年提交", c["totalCommitContributions"] + c["restrictedContributionsCount"]),
+        ("fire", "近一年贡献", c["contributionCalendar"]["totalContributions"]),
         ("pr", "Pull Requests", c["totalPullRequestContributions"]),
         ("repo", "公开仓库", u["repositories"]["totalCount"]),
         ("people", "Followers", u["followers"]["totalCount"]),
