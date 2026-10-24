@@ -21,20 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Stats and language cards
+      - name: Signature card
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LOGIN: ${{ github.repository_owner }}
           OUT: dist
-        run: python3 .github/scripts/cards.py
-
-      - name: Contribution snake
-        uses: Platane/snk@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/snake.svg
-            dist/snake-dark.svg?palette=github-dark
+        run: python3 .github/scripts/card.py
 
       - name: Publish to output branch
         uses: crazy-max/ghaction-github-pages@v4

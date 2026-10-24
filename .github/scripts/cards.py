@@ -47,15 +47,15 @@ MOCK = {
         "restrictedContributionsCount": 210,
         "totalPullRequestContributions": 42,
         "totalIssueContributions": 17,
-        "contributionCalendar": {"totalContributions": 2103},
+        "contributionCalendar": {"totalContributions": 118},
     },
     "repositories": {
         "totalCount": 29,
         "nodes": [
-            {"stargazerCount": 120, "languages": {"edges": [
+            {"stargazerCount": 30, "languages": {"edges": [
                 {"size": 900000, "node": {"name": "Swift", "color": "#F05138"}},
                 {"size": 500000, "node": {"name": "JavaScript", "color": "#f1e05a"}}]}},
-            {"stargazerCount": 80, "languages": {"edges": [
+            {"stargazerCount": 18, "languages": {"edges": [
                 {"size": 400000, "node": {"name": "Objective-C", "color": "#438eff"}},
                 {"size": 300000, "node": {"name": "Python", "color": "#3572A5"}},
                 {"size": 120000, "node": {"name": "Logos", "color": "#ff0000"}},
