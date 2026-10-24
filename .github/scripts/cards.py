@@ -1,14 +1,15 @@
-"""Generate GitHub stats and top-language SVG cards.
+"""Generate the GitHub stats strip SVG.
 
 Runs in GitHub Actions with GITHUB_TOKEN. Writes:
   dist/stats.svg
-  dist/langs.svg
 Set MOCK=1 to render with sample data locally.
 """
 import json
 import os
 import urllib.request
 from html import escape
+
+from theme import FONT, style
 
 LOGIN = os.environ.get("LOGIN", "5hux1n")
 OUT = os.environ.get("OUT", "dist")
@@ -64,14 +65,7 @@ MOCK = {
     },
 }
 
-# Palette (dark card, reads well on both light and dark GitHub themes)
-BG = "#0d1117"
-BORDER = "#30363d"
-TITLE = "#7ee7c7"
-TEXT = "#c9d1d9"
 MUTED = "#8b949e"
-ACCENT = "#58a6ff"
-FONT = "'Segoe UI', Ubuntu, 'Helvetica Neue', 'PingFang SC', sans-serif"
 
 # Languages that are markup/data rather than code
 SKIP_LANGS = {"HTML", "CSS", "SCSS", "Makefile", "Dockerfile", "Jupyter Notebook"}
@@ -108,22 +102,18 @@ ICONS = {
     "fire": "M9.533.753V.752c.217 2.385 1.463 3.626 2.653 4.81C13.37 6.74 14.498 7.863 14.498 10c0 3.5-3 6-6.5 6S1.5 13.512 1.5 10c0-1.298.536-2.56 1.425-3.286.376-.308.862 0 1.035.454C4.46 8.487 5.312 9.328 6.5 9c-1-2.5.5-6 3.033-8.247Z",
 }
 
-STYLE = f"""<style>
-  .t {{ font: 600 17px {FONT}; fill: {TITLE}; }}
-  .l {{ font: 400 13.5px {FONT}; fill: {TEXT}; }}
-  .v {{ font: 700 13.5px {FONT}; fill: {TEXT}; }}
-  .m {{ font: 400 12px {FONT}; fill: {MUTED}; }}
-  .row {{ opacity: 0; animation: in .5s ease-out forwards; }}
-  @keyframes in {{ from {{ opacity: 0; transform: translateX(-8px); }} to {{ opacity: 1; transform: none; }} }}
-  .bar {{ animation: grow 1s ease-out forwards; transform-origin: left; transform: scaleX(0); }}
-  @keyframes grow {{ to {{ transform: scaleX(1); }} }}
-</style>"""
+STYLE = style("""
+  .bar { transform-box: fill-box; transform-origin: left center; transform: scaleX(0);
+         animation: grow 1s ease-out .2s forwards; }
+  @keyframes grow { to { transform: scaleX(1); } }
+  .big { font: 700 24px """ + FONT + """; fill: var(--text); }
+""")
 
 
 def frame(w, h, title, inner):
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="{escape(title)}">
 {STYLE}
-<rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="10" fill="{BG}" stroke="{BORDER}"/>
+<rect class="card" x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="12"/>
 <text x="25" y="36" class="t">{escape(title)}</text>
 {inner}
 </svg>
@@ -133,59 +123,43 @@ def frame(w, h, title, inner):
 def stats_card(u):
     c = u["contributionsCollection"]
     stars = sum(n["stargazerCount"] for n in u["repositories"]["nodes"])
-    rows = [
+    items = [
         ("star", "Stars", stars),
-        ("commit", "近一年提交", c["totalCommitContributions"] + c["restrictedContributionsCount"]),
         ("fire", "近一年贡献", c["contributionCalendar"]["totalContributions"]),
+        ("commit", "近一年提交", c["totalCommitContributions"] + c["restrictedContributionsCount"]),
         ("pr", "Pull Requests", c["totalPullRequestContributions"]),
         ("repo", "公开仓库", u["repositories"]["totalCount"]),
         ("people", "Followers", u["followers"]["totalCount"]),
     ]
-    inner = []
-    for i, (icon, label, val) in enumerate(rows):
-        y = 62 + i * 25
-        inner.append(
-            f'<g class="row" style="animation-delay:{150 + i * 120}ms" transform="translate(25,{y})">'
-            f'<path d="{ICONS[icon]}" fill="{ACCENT}" transform="translate(0,-1)"/>'
-            f'<text x="26" y="12.5" class="l">{label}</text>'
-            f'<text x="250" y="12.5" class="v" text-anchor="end">{fmt(val)}</text></g>'
+    w, h, col = 780, 96, 130
+    out = []
+    for i, (icon, label, val) in enumerate(items):
+        cx = col * i + col / 2
+        if i:
+            out.append(f'<line x1="{col * i}" y1="24" x2="{col * i}" y2="{h - 24}" stroke="var(--border)"/>')
+        out.append(
+            f'<g class="fade" style="animation-delay:{80 + i * 90}ms">'
+            f'<text x="{cx}" y="46" class="big" text-anchor="middle">{fmt(val)}</text>'
+            f'<g transform="translate({cx},66)"><text x="9" y="0" class="m" text-anchor="middle">{label}</text></g>'
+            f'</g>'
         )
-    return frame(300, 220, "GitHub 数据", "\n".join(inner))
-
-
-def langs_card(u, top=6):
-    totals, colors = {}, {}
-    for repo in u["repositories"]["nodes"]:
-        for e in repo["languages"]["edges"]:
-            name = e["node"]["name"]
-            if name in SKIP_LANGS:
-                continue
-            totals[name] = totals.get(name, 0) + e["size"]
-            colors[name] = e["node"]["color"] or MUTED
-    ranked = sorted(totals.items(), key=lambda kv: kv[1], reverse=True)[:top]
-    total = sum(v for _, v in ranked) or 1
-    w, bar_w = 360, 310
-    inner, x = [], 25.0
-    # stacked progress bar
-    inner.append(f'<clipPath id="r"><rect x="25" y="56" width="{bar_w}" height="9" rx="4.5"/></clipPath>')
-    inner.append('<g clip-path="url(#r)" class="bar">')
-    for name, size in ranked:
-        seg = bar_w * size / total
-        inner.append(f'<rect x="{x:.2f}" y="56" width="{seg + 0.5:.2f}" height="9" fill="{colors[name]}"/>')
-        x += seg
-    inner.append("</g>")
-    # two-column legend
-    for i, (name, size) in enumerate(ranked):
-        col, row = i % 2, i // 2
-        gx, gy = 25 + col * 165, 90 + row * 30
-        pct = 100 * size / total
-        inner.append(
-            f'<g class="row" style="animation-delay:{300 + i * 120}ms" transform="translate({gx},{gy})">'
-            f'<circle cx="5" cy="5" r="5" fill="{colors[name]}"/>'
-            f'<text x="16" y="9.5" class="l">{escape(name)}</text>'
-            f'<text x="16" y="25" class="m">{pct:.1f}%</text></g>'
+    # icons sit left of each label; label width estimated so the pair stays centred
+    icons = []
+    for i, (icon, label, _) in enumerate(items):
+        cx = col * i + col / 2
+        lw = sum(12.5 if ord(ch) > 0x2E80 else 7 for ch in label)
+        x = cx + 9 - lw / 2 - 18
+        icons.append(
+            f'<g class="fade" style="animation-delay:{80 + i * 90}ms">'
+            f'<path class="ic" d="{ICONS[icon]}" transform="translate({x:.1f},55) scale(0.8)"/></g>'
         )
-    return frame(w, 220, "常用语言", "\n".join(inner))
+    body = "\n".join(out + icons)
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="GitHub 数据">
+{STYLE}
+<rect class="card" x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="14"/>
+{body}
+</svg>
+"""
 
 
 def main():
@@ -193,8 +167,6 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "stats.svg"), "w", encoding="utf-8") as f:
         f.write(stats_card(u))
-    with open(os.path.join(OUT, "langs.svg"), "w", encoding="utf-8") as f:
-        f.write(langs_card(u))
     print("wrote", OUT)
 
 

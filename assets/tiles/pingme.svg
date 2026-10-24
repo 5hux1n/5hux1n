@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="252" height="80" viewBox="0 0 252 80" role="img" aria-label="PingMe：独立项目反馈中心">
+<style>
+  :root {
+    --bg: #ffffff; --border: #d0d7de; --text: #1f2328; --muted: #59636e;
+    --title: #0969da; --accent: #0969da; --track: #eaeef2; --tile: #f6f8fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117; --border: #30363d; --text: #e6edf3; --muted: #8b949e;
+      --title: #58a6ff; --accent: #58a6ff; --track: #21262d; --tile: #161b22;
+    }
+  }
+  .card { fill: var(--bg); stroke: var(--border); }
+  .t { font: 600 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; fill: var(--title); }
+  .n { font: 600 15px -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; fill: var(--text); }
+  .l { font: 400 13.5px -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; fill: var(--text); }
+  .v { font: 700 13.5px -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; fill: var(--text); }
+  .m { font: 400 12.5px -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; fill: var(--muted); }
+  .ic { fill: var(--accent); }
+  .track { fill: var(--track); }
+  .fade { opacity: 0; animation: fade .6s ease-out forwards; }
+  @keyframes fade { to { opacity: 1; } }
+.lm { font: 700 26px -apple-system, "PingFang SC", "Noto Sans SC", sans-serif; fill: #fff; } .card { fill: var(--tile); }</style>
+<rect class="card" x="0.5" y="0.5" width="251" height="79" rx="16"/>
+<defs><clipPath id="ic"><rect x="14" y="14" width="52" height="52" rx="12"/></clipPath></defs><rect x="14" y="14" width="52" height="52" rx="12" fill="#fafafa"/><image clip-path="url(#ic)" x="20" y="20" width="40" height="40" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MiA0MiIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJQaW5nTWUgaWNvbiI+CjxlbGxpcHNlIGN4PSIyMS4wIiBjeT0iMjEuMCIgcng9IjE2LjUiIHJ5PSIxNi41IiBmaWxsPSJub25lIiBzdHJva2U9InJnYigzNywgMzcsIDM1KSIgc3Ryb2tlLXdpZHRoPSIxIi8+CjxlbGxpcHNlIGN4PSIyOS4wIiBjeT0iMTQuMCIgcng9IjMuMCIgcnk9IjMuMCIgZmlsbD0icmdiKDEwOCwgOTEsIDIzMykiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIi8+CjxwYXRoIGQ9Ik03MCAtMjAwVjQ5NkgxOTRWNDM2SDIxMlEyMjkgNDY1IDI2NS4wIDQ4Ny41UTMwMSA1MTAgMzY4IDUxMFE0MjggNTEwIDQ3OS4wIDQ4MC41UTUzMCA0NTEgNTYxLjAgMzk0LjBRNTkyIDMzNyA1OTIgMjU2VjI0MFE1OTIgMTU5IDU2MS4wIDEwMi4wUTUzMCA0NSA0NzkuMCAxNS41UTQyOCAtMTQgMzY4IC0xNFEzMjMgLTE0IDI5Mi41IC0zLjVRMjYyIDcgMjQzLjUgMjMuNVEyMjUgNDAgMjE0IDU3SDE5NlYtMjAwWk0zMzAgOTZRMzg5IDk2IDQyNy41IDEzMy41UTQ2NiAxNzEgNDY2IDI0M1YyNTNRNDY2IDMyNSA0MjcuMCAzNjIuNVEzODggNDAwIDMzMCA0MDBRMjcyIDQwMCAyMzMuMCAzNjIuNVExOTQgMzI1IDE5NCAyNTNWMjQzUTE5NCAxNzEgMjMzLjAgMTMzLjVRMjcyIDk2IDMzMCA5NloiIGZpbGw9InJnYigzNywgMzcsIDM1KSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTIuOTIxODc1IDI3LjUpIHNjYWxlKDAuMDMgLTAuMDMpIi8+Cjwvc3ZnPg=="/><rect x="14.5" y="14.5" width="51" height="51" rx="11.5" fill="none" stroke="#000" stroke-opacity=".08"/>
+<text x="80" y="36" class="n">PingMe</text>
+<text x="80" y="57" class="m">独立项目反馈中心</text>
+</svg>
