@@ -15,46 +15,12 @@
 
 <br/><br/>
 
-<h3>📱 iOS 插件</h3>
-
-<a href="https://github.com/5hux1n/fanqiefn"><img src="assets/tiles/fanqiefn.svg" width="252" alt="番茄净化：番茄小说去广告与净化" /></a>
-<a href="https://github.com/5hux1n/hongguofn"><img src="assets/tiles/hongguofn.svg" width="252" alt="红果净化：红果短剧界面与播放调整" /></a>
-<a href="https://github.com/5hux1n/XianYuHelper"><img src="assets/tiles/XianYuHelper.svg" width="252" alt="闲鱼助手：去广告 · 自动擦亮" /></a>
-<br/>
-<a href="https://github.com/5hux1n/wclocate"><img src="assets/tiles/wclocate.svg" width="252" alt="WCLocate：微信虚拟定位" /></a>
-<a href="https://github.com/5hux1n/uuhelper"><img src="assets/tiles/uuhelper.svg" width="252" alt="uu 远控增强：快捷键与虚拟滚轮" /></a>
-<a href="https://github.com/5hux1n/UUScreenSwitch"><img src="assets/tiles/UUScreenSwitch.svg" width="252" alt="UU 远控切屏：一键切换显示器" /></a>
-<br/>
-<a href="https://github.com/5hux1n/Alipay2NFC"><img src="assets/tiles/Alipay2NFC.svg" width="252" alt="Alipay2NFC：碰一碰唤起指定支付宝" /></a>
-<a href="https://github.com/5hux1n/spoofnotify"><img src="assets/tiles/spoofnotify.svg" width="252" alt="SpoofNotify：通知权限伪装" /></a>
-
-<br/><br/>
-
-<h3>💻 Mac</h3>
-
-<a href="https://github.com/5hux1n/CodexM"><img src="assets/tiles/CodexM.svg" width="252" alt="CodexM：菜单栏切换 Codex 账户" /></a>
-<a href="https://github.com/5hux1n/CherryMac"><img src="assets/tiles/CherryMac.svg" width="252" alt="CherryMac：CHERRY 键盘 Mac 客户端" /></a>
-<a href="https://github.com/5hux1n/m04s"><img src="assets/tiles/m04s.svg" width="252" alt="m04s：印先森打印机 Mac 驱动" /></a>
-
-<br/><br/>
-
-<h3>🌐 网页与工具</h3>
-
-<a href="https://github.com/5hux1n/shuxin"><img src="assets/tiles/shuxin.svg" width="252" alt="书信：可自托管的个人微博客" /></a>
-<a href="https://github.com/5hux1n/pingme"><img src="assets/tiles/pingme.svg" width="252" alt="PingMe：独立项目反馈中心" /></a>
-<a href="https://github.com/5hux1n/Silex"><img src="assets/tiles/Silex.svg" width="252" alt="Silex：越狱软件源生成器" /></a>
-<br/>
-<a href="https://github.com/5hux1n/repolist"><img src="assets/tiles/repolist.svg" width="252" alt="RepoList：越狱源合集，一键添加" /></a>
-<a href="https://github.com/5hux1n/NSimg"><img src="assets/tiles/NSimg.svg" width="252" alt="NSimg：NodeSeek 图片上传助手" /></a>
-
-<br/><br/>
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/5hux1n/5hux1n/output/snake-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/5hux1n/5hux1n/output/snake.svg" />
   <img src="https://raw.githubusercontent.com/5hux1n/5hux1n/output/snake.svg" alt="贡献图贪吃蛇" />
 </picture>
 
-<sub>数据和贪吃蛇每天自动更新 · 更多项目见 <a href="https://mjh.im">mjh.im</a></sub>
+<sub>数据和贪吃蛇每天自动更新 · 项目见 <a href="https://mjh.im">mjh.im</a></sub>
 
 </div>
